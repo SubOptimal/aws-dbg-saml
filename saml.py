@@ -3,20 +3,16 @@
 import requests
 import json
 import boto3
-import botocore
-from botocore.client import Config
 import sys
 from bs4 import BeautifulSoup
 import base64
 import xml.etree.ElementTree as ET
 import datetime
-import dateutil
 import pickle
 import os
 import getpass
 from os.path import expanduser
 from configobj import ConfigObj
-import shutil
 from pytz import timezone
 import pytz
 
