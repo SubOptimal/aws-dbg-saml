@@ -15,6 +15,10 @@ from os.path import expanduser
 from configobj import ConfigObj
 from pytz import timezone
 import pytz
+try:
+   input = raw_input
+except NameError:
+   pass
 
 debug = False
 
@@ -92,8 +96,8 @@ def auth_live():
         return None
 
     try:
-        r1j['callbacks'][0]['input'][0]['value'] = raw_input('Username: ')     # should locate 'IDToken1'
-        r1j['callbacks'][1]['input'][0]['value'] = raw_input('MFA token: ')      # should locate 'IDToken2'
+        r1j['callbacks'][0]['input'][0]['value'] = input('Username: ')     # should locate 'IDToken1'
+        r1j['callbacks'][1]['input'][0]['value'] = input('MFA token: ')      # should locate 'IDToken2'
         r1j['callbacks'][2]['input'][0]['value'] = getpass.getpass('Password: ')   # should locate 'IDToken3'
         if debug:
             print json.dumps(r1j, indent=2)
