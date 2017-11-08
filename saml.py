@@ -96,9 +96,15 @@ def auth_live():
         return None
 
     try:
-        r1j['callbacks'][0]['input'][0]['value'] = input('Username: ')     # should locate 'IDToken1'
+        username = getpass.getuser()
+        password = os.environ.get('USRPWD')
+
+        if password == None:
+          password = getpass.getpass('Password: ')
+
+        r1j['callbacks'][0]['input'][0]['value'] = username
         r1j['callbacks'][1]['input'][0]['value'] = input('MFA token: ')      # should locate 'IDToken2'
-        r1j['callbacks'][2]['input'][0]['value'] = getpass.getpass('Password: ')   # should locate 'IDToken3'
+        r1j['callbacks'][2]['input'][0]['value'] = password
         if debug:
             print(json.dumps(r1j, indent=2))
     except Exception as e:
